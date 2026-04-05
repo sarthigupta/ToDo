@@ -1,5 +1,5 @@
-# Use the official Node 18 Image based on Alpine Linux
-FROM node:18-alpine
+# Use the official Node 18 Image
+FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /app
