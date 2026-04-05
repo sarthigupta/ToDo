@@ -1,15 +1,11 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15-alpine
     container_name: postgres_db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_DB: todo_db
-    ports:
-      - "5432:5432"
+    restart: unless-stopped
+    env_file:
+      - .env
+    # Port 5432 removed to lock down database access from the outside world
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
@@ -23,14 +19,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: node_backend
-    restart: always
+    restart: unless-stopped
     ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
-      - DATABASE_URL=postgresql://postgres:mysecretpassword@db:5432/todo_db?schema=public
-      - JWT_SECRET=mysecretjwtkeyfordocker
-    command: sh -c "npx prisma migrate deploy && node dist/index.js"
+      - "80:3000" # Maps standard web port 80 to your Node port 3000
+    env_file:
+      - .env # Securely injects your DATABASE_URL and JWT_SECRET
+    command: sh -c "npx prisma generate && npx prisma migrate deploy && node dist/index.js"
     depends_on:
       db:
         condition: service_healthy

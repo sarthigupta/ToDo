@@ -26,6 +26,8 @@ export const signup = async (req: CustomRequest, res: Response) => {
             user
         });
     } catch (error) {
+        console.log(error);
+        
         return res.status(500).json({
             message: "Error in user creation",
             success: false

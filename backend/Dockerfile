@@ -1,5 +1,5 @@
-# Use the official Node 18 Image
-FROM node:18
+# Use the official Node 20 Image based on Alpine Linux
+FROM node:20-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -14,10 +14,10 @@ RUN npm install
 COPY . .
 
 # Generate Prisma Client
-RUN npx prisma generate
+# RUN npx prisma generate
 
 # Compile TypeScript to JavaScript
-RUN npx tsc
+RUN npm run build
 
 # Expose the application port
 EXPOSE 3000
