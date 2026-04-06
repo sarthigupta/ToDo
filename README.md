@@ -1,6 +1,6 @@
 # PERN Stack Todo API
 
-> A production-ready, Dockerized REST API for a Todo application built with Node.js, Express, TypeScript, Prisma 7, and PostgreSQL 15 — with JWT-based authentication and bcrypt password hashing.
+A production-ready, Dockerized REST API for a Todo application built with Node.js, Express, TypeScript, Prisma 7, and PostgreSQL 15 — with JWT-based authentication and bcrypt password hashing.
 
 ---
 
@@ -228,8 +228,6 @@ Contributions are welcome. To get started:
 
 Please follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages.
 
----
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
+
